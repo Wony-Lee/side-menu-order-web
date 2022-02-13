@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SET_CLOSE_MODAL, SET_OPEN_MODAL } from '../reducer/modalReducer';
 import styled from '@emotion/styled'
 import NavBar from './Nav/NavBar'
-import OrderSideBar from './MenuList/OrderSideBar';
+import OrderSideBar from './Modal/OrderSideBar';
 
 const Layout = styled.div`
     display:flex;
@@ -19,11 +19,7 @@ const Content = styled.div`
 const AppLayout = ({ children }) => {
     const { modalState } = useSelector(state => state.modal)
     const dispatch = useDispatch()
-    const handleOpenMenuOrder = useCallback(() => {
-        dispatch({
-            type: SET_OPEN_MODAL
-        })
-    }, [])
+
     const handleCloseMenuOrder = useCallback(() => {
         dispatch({
             type: SET_CLOSE_MODAL

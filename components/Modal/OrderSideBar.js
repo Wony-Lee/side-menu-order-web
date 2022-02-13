@@ -18,4 +18,4 @@ const OrderSideBar = ({ modalState, onClick }) => {
     )
 }
 
-export default OrderSideBar
+export default React.memo(OrderSideBar)

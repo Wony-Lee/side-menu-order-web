@@ -1,33 +1,22 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from '@emotion/styled';
+import { SET_MENU_TAB } from '../../reducer/menuReducer';
 
-const NavBarItemUl = styled.ul`
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    width:100%;
-    & li {
-        width:${props => props.size}%;
-    }
-`;
 
-const NavBarItem = () => {
-    const menuSample = [{
-        name: '1번'
-    }, {
-        name: '2번'
-    }, {
-        name: '3번'
-    }, {
-        name: '4번'
-    }]
+const NavBarItem = ({ item }) => {
+    const { name } = item;
+    const dispatch = useDispatch();
+    const handleMenuTab = useCallback(() => {
+        dispatch({
+            type: SET_MENU_TAB,
+            payload: name
+        })
+        console.log('inner name', name)
+    }, [name])
     return (
-        <NavBarItemUl size={`${100 / menuSample.length}`}>
-            {
-                menuSample.map(item => (<li key={item.name}>{item.name}</li>))
-            }
-        </NavBarItemUl>
+        <li onClick={handleMenuTab}><p>{name}</p></li>
     )
 }
 
-export default NavBarItem
+export default React.memo(NavBarItem)

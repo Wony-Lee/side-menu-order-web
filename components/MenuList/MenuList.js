@@ -1,10 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled'
 import MenuItem from './MenuItem'
-import OrderSideBar from './OrderSideBar';
-import { SET_CLOSE_MODAL, SET_OPEN_MODAL } from '../../reducer/modalReducer';
-
+import { SET_OPEN_MODAL } from '../../reducer/modalReducer';
 const Layout = styled.div`
     display:flex;
     width:100%;
@@ -37,20 +35,14 @@ const MenuList = () => {
             image: 'image4',
         },
     ]
-    const { modalState } = useSelector(state => state.modal)
     const dispatch = useDispatch()
     const handleOpenMenuOrder = useCallback(() => {
         dispatch({
             type: SET_OPEN_MODAL
         })
     }, [])
-    const handleCloseMenuOrder = useCallback(() => {
-        dispatch({
-            type: SET_CLOSE_MODAL
-        })
-    })
     return (
-        <Layout>
+        <Layout >
             {
                 sampleData.map(item => (<MenuItem item={item} key={item.title} onClick={handleOpenMenuOrder} />))
             }
@@ -58,4 +50,4 @@ const MenuList = () => {
     )
 }
 
-export default MenuList
+export default React.memo(MenuList)
