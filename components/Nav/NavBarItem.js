@@ -15,7 +15,7 @@ const NavBarItem = ({ item }) => {
         console.log('inner name', name)
     }, [name])
     return (
-        <li onClick={handleMenuTab}><p>{name}</p></li>
+        <li><p onClick={handleMenuTab}>{name}</p></li>
     )
 }
 
