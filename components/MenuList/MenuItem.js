@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
+import { useDispatch } from 'react-redux';
+import { SET_OPEN_MODAL } from '../../reducer/modalReducer';
 
 const Layout = styled.div`
     display:flex;
@@ -52,11 +54,19 @@ const Button = styled.button`
     font-weight: bold;
 `;
 
-const MenuItem = ({ item, onClick }) => {
+const MenuItem = ({ item }) => {
     const { title, desc, price, image } = item;
+
+    const dispatch = useDispatch()
+    const handleOpenMenuOrder = useCallback(() => {
+        dispatch({
+            type: SET_OPEN_MODAL,
+            payload: title
+        })
+    }, [])
     return (
-        <Layout onClick={onClick}>
-            <div className="image-box">
+        <Layout onClick={handleOpenMenuOrder}>
+            <div className="image-box" >
                 <p>{image}</p>
             </div>
             <div className="product-info-box">
@@ -72,4 +82,4 @@ const MenuItem = ({ item, onClick }) => {
     )
 }
 
-export default React.memo(MenuItem)
+export default MenuItem;

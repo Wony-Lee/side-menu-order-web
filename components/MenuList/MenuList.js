@@ -35,16 +35,18 @@ const MenuList = () => {
             image: 'image4',
         },
     ]
-    const dispatch = useDispatch()
-    const handleOpenMenuOrder = useCallback(() => {
-        dispatch({
-            type: SET_OPEN_MODAL
-        })
-    }, [])
+    // const dispatch = useDispatch()
+    // const handleOpenMenuOrder = useCallback((title) => {
+    //     dispatch({
+    //         type: SET_OPEN_MODAL,
+    //         payload:title
+    //     })
+    //     console.log('Test')
+    // }, [])
     return (
         <Layout >
             {
-                sampleData.map(item => (<MenuItem item={item} key={item.title} onClick={handleOpenMenuOrder} />))
+                sampleData.map(item => (<MenuItem item={item} key={item.title} />))
             }
         </Layout>
     )

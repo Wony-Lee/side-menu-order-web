@@ -13,7 +13,7 @@ const SideLayout = styled.div`
 const OrderSideBar = ({ modalState, onClick }) => {
     return (
         <SideLayout modalState={modalState} onClick={onClick}>
-            SideBar
+            MenuInfo
         </SideLayout>
     )
 }
