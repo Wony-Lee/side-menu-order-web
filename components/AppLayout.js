@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SET_CLOSE_MODAL, SET_OPEN_MODAL } from '../reducer/modalReducer';
 import styled from '@emotion/styled'
 import NavBar from './Nav/NavBar'
-import OrderSideBar from './Modal/OrderSideBar';
+import MenuInfoModal from './Modal/MenuInfoModal';
 
 const Layout = styled.div`
     display:flex;
@@ -31,7 +31,7 @@ const AppLayout = ({ children }) => {
             <Content>
                 {children}
             </Content>
-            <OrderSideBar modalState={modalState} onClick={handleCloseMenuOrder} />
+            <MenuInfoModal modalState={modalState} onClick={handleCloseMenuOrder} />
         </Layout>
     )
 }

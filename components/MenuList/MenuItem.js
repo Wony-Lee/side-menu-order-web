@@ -65,8 +65,11 @@ const MenuItem = ({ item }) => {
         })
     }, [])
     return (
-        <Layout onClick={handleOpenMenuOrder}>
-            <div className="image-box" >
+        <Layout>
+            <div
+                className="image-box"
+                onClick={handleOpenMenuOrder}
+            >
                 <p>{image}</p>
             </div>
             <div className="product-info-box">
