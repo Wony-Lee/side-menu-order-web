@@ -13,26 +13,30 @@ const MenuList = () => {
         {
             title: 'title1',
             desc: 'desc1',
-            price: '1,000',
+            price: 1000,
             image: 'image1',
+            count: 1
         },
         {
             title: 'title2',
             desc: 'desc2',
-            price: '2,000',
+            price: 2000,
             image: 'image2',
+            count: 1
         },
         {
             title: 'title3',
             desc: 'desc3',
-            price: '3,000',
+            price: 3000,
             image: 'image3',
+            count: 1
         },
         {
             title: 'title4',
             desc: 'desc4',
-            price: '4,000',
+            price: 4000,
             image: 'image4',
+            count: 1
         },
     ]
     // const dispatch = useDispatch()

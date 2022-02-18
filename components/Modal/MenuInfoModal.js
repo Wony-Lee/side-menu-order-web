@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
+import { useSelector, useDispatch } from 'react-redux';
+import Router from 'next/router'
+import Button from '../Element/Button';
+import { MENU_COUNT_UP } from '../../reducer/modalReducer';
 
 const MenuInfoLayout = styled.div`
     display:${props => props.modalState ? 'block' : 'none'};
@@ -57,18 +61,37 @@ const Content = styled.div`
 `;
 
 const MenuInfoModal = ({ modalState, onClick }) => {
+    const { menuItem } = useSelector(state => state.modal)
+
+
+    const dispatch = useDispatch()
+    const handleMenuOrder = useCallback(() => {
+        Router.push('/order')
+    }, [])
+
     return (
-        <MenuInfoLayout modalState={modalState} onClick={onClick}>
+        <MenuInfoLayout modalState={modalState}>
             <Content>
                 <div className="image-box">
-                    <p>image</p>
+                    <p>{menuItem.image}</p>
                 </div>
                 <div className="content-box">
-                    <p>대충 설명</p>
-                    <p>가격</p>
+                    <p>상품 : {menuItem.title}</p>
+                    <p>설명 : {menuItem.desc}</p>
+                    <p>가격 : {parseInt(menuItem.price) * parseInt(menuItem.count)} 원</p>
+                    <p>주문 : {menuItem.count} 개</p>
+                    <div>
+                        <button
+                            style={{ marginRight: 10 }}
+                        >
+                            up
+                        </button>
+                        <button>down</button>
+                    </div>
                 </div>
                 <div className="button-box">
-                    <button>주문하기</button>
+                    <Button onClick={handleMenuOrder}>주문하기</Button>
+                    <Button onClick={onClick}>닫기</Button>
                 </div>
             </Content>
         </MenuInfoLayout>

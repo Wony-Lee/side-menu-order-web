@@ -4,6 +4,7 @@ const initialState = {
 
 export const SET_MENU_TAB = 'SET_MENU_TAB'
 
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_MENU_TAB: return {

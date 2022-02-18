@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux';
 import { SET_OPEN_MODAL } from '../../reducer/modalReducer';
+import Button from '../Element/Button';
 
 const Layout = styled.div`
     display:flex;
@@ -43,25 +44,16 @@ const Layout = styled.div`
     }
 `;
 
-const Button = styled.button`
-    max-width:90px;
-    height:40px;
-    width:100%;
-    background-color:hotpink;
-    border-radius: 16px;
-    color:white;
-    font-size:18px;
-    font-weight: bold;
-`;
+
 
 const MenuItem = ({ item }) => {
-    const { title, desc, price, image } = item;
+    const { title, desc, price, image, count } = item;
 
     const dispatch = useDispatch()
     const handleOpenMenuOrder = useCallback(() => {
         dispatch({
             type: SET_OPEN_MODAL,
-            payload: title
+            payload: item
         })
     }, [])
     return (
@@ -78,7 +70,7 @@ const MenuItem = ({ item }) => {
                 <p>가격 : {price}</p>
             </div>
             <div className="button-box">
-                <Button>주문하기</Button>
+                <Button onClick={handleOpenMenuOrder}>주문하기</Button>
                 <Button>장바구니</Button>
             </div>
         </Layout>
