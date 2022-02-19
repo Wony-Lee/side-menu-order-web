@@ -15,6 +15,7 @@ const order = () => {
             <p>{menuItem.image}</p>
             <p>{menuItem.desc}</p>
             <p>{menuItem.price}</p>
+            <p>{menuItem.count}</p>
         </AppLayout>
     )
 }

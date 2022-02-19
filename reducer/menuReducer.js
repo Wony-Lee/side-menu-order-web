@@ -12,9 +12,7 @@ const reducer = (state = initialState, action) => {
             defaultTab: action.payload
         }
         default:
-            return {
-                ...state
-            }
+            return state
     }
 }
 

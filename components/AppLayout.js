@@ -17,21 +17,13 @@ const Content = styled.div`
 `;
 
 const AppLayout = ({ children }) => {
-    const { modalState } = useSelector(state => state.modal)
-    const dispatch = useDispatch()
-
-    const handleCloseMenuOrder = useCallback(() => {
-        dispatch({
-            type: SET_CLOSE_MODAL
-        })
-    })
     return (
         <Layout>
             <NavBar />
             <Content>
                 {children}
             </Content>
-            <MenuInfoModal modalState={modalState} onClick={handleCloseMenuOrder} />
+            <MenuInfoModal />
         </Layout>
     )
 }

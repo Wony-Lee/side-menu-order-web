@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled'
 import MenuItem from './MenuItem'
 import { SET_OPEN_MODAL } from '../../reducer/modalReducer';
+import axios from 'axios';
 const Layout = styled.div`
     display:flex;
     width:100%;
@@ -39,6 +40,7 @@ const MenuList = () => {
             count: 1
         },
     ]
+
     // const dispatch = useDispatch()
     // const handleOpenMenuOrder = useCallback((title) => {
     //     dispatch({

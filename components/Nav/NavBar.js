@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import NavBarItem from './NavBarItem'
 import styled from '@emotion/styled'
 
@@ -54,7 +55,11 @@ const NavBar = () => {
     }]
     return (
         <NavBarLayout>
-            <ImageBlock>logo</ImageBlock>
+            <ImageBlock>
+                <Link href="/">
+                    <a>logo</a>
+                </Link>
+            </ImageBlock>
             <NavBarItemUl size={`${100 / menuSample.length}`}>
                 {
                     menuSample.map(item => (<NavBarItem key={item.name} item={item} />))

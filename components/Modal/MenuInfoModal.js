@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router'
 import Button from '../Element/Button';
-import { MENU_COUNT_UP } from '../../reducer/modalReducer';
+import { MENU_COUNT_UP, SET_CLOSE_MODAL } from '../../reducer/modalReducer';
 
 const MenuInfoLayout = styled.div`
     display:${props => props.modalState ? 'block' : 'none'};
@@ -60,14 +60,41 @@ const Content = styled.div`
     }
 `;
 
-const MenuInfoModal = ({ modalState, onClick }) => {
+const MenuInfoModal = () => {
     const { menuItem } = useSelector(state => state.modal)
-
+    const { modalState } = useSelector(state => state.modal)
+    const [menuCounter, setMenuCounter] = useState(1)
 
     const dispatch = useDispatch()
+    const handleCloseMenuOrder = useCallback(() => {
+        dispatch({
+            type: SET_CLOSE_MODAL,
+            payload: {}
+        })
+        setMenuCounter(1)
+    }, [menuCounter])
+
+    const handleMenuCountUp = useCallback(() => {
+        setMenuCounter(prev => prev += 1)
+    }, [menuCounter])
+    const handleMnueCountDown = useCallback(() => {
+        if (menuCounter > 1) {
+            setMenuCounter(prev => prev -= 1)
+        }
+    }, [menuCounter])
+
     const handleMenuOrder = useCallback(() => {
+        console.log('handleMenuOrder => ', menuItem)
+        dispatch({
+            type: SET_CLOSE_MODAL,
+            payload: {
+                ...menuItem,
+                count: menuCounter,
+                price: menuItem.price * menuCounter
+            }
+        })
         Router.push('/order')
-    }, [])
+    }, [menuCounter])
 
     return (
         <MenuInfoLayout modalState={modalState}>
@@ -78,20 +105,25 @@ const MenuInfoModal = ({ modalState, onClick }) => {
                 <div className="content-box">
                     <p>상품 : {menuItem.title}</p>
                     <p>설명 : {menuItem.desc}</p>
-                    <p>가격 : {parseInt(menuItem.price) * parseInt(menuItem.count)} 원</p>
-                    <p>주문 : {menuItem.count} 개</p>
+                    <p>가격 : {menuItem.price * menuCounter} 원</p>
+                    <p>주문 : {menuCounter} 개</p>
                     <div>
                         <button
                             style={{ marginRight: 10 }}
+                            onClick={handleMenuCountUp}
                         >
                             up
                         </button>
-                        <button>down</button>
+                        <button
+                            onClick={handleMnueCountDown}
+                        >
+                            down
+                        </button>
                     </div>
                 </div>
                 <div className="button-box">
                     <Button onClick={handleMenuOrder}>주문하기</Button>
-                    <Button onClick={onClick}>닫기</Button>
+                    <Button onClick={handleCloseMenuOrder}>닫기</Button>
                 </div>
             </Content>
         </MenuInfoLayout>
