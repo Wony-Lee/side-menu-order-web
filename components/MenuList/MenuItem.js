@@ -71,7 +71,7 @@ const MenuItem = ({ item }) => {
             </div>
             <div className="button-box">
                 <Button onClick={handleOpenMenuOrder}>주문하기</Button>
-                <Button>장바구니</Button>
+                {/* <Button>장바구니</Button> */}
             </div>
         </Layout>
     )

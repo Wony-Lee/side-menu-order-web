@@ -122,7 +122,7 @@ const MenuInfoModal = () => {
                     </div>
                 </div>
                 <div className="button-box">
-                    <Button onClick={handleMenuOrder}>주문하기</Button>
+                    <Button onClick={handleMenuOrder}>확인</Button>
                     <Button onClick={handleCloseMenuOrder}>닫기</Button>
                 </div>
             </Content>
